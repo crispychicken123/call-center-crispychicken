@@ -1,16 +1,12 @@
 {
-  "offer_active": true,
-  "title_ar": "🔥 عرض الباكت العائلي",
-  "title_en": "🔥 Family Bucket Offer",
-  "description_ar": "احصل على خصم 10% عند طلبك اليوم بقيمة أكثر من 40 درهم!",
-  "description_en": "Get 10% OFF when your order is above AED 40 today!",
-  "discount_percent": 10,
-  "min_order_aed": 40,
-  "hotline": "600527488",
-  "mobile": "0501882206",
-  "whatsapp_e164": "+971501882206",
-  "email": "kenawe@crispychicken.rest",
-  "social": {
+  "pwd": "Crispy@123",
+  "title_en": "🐔 Chicken Day Offer",
+  "description_en": "🍗 8 pcs Crispy Chicken + 2 Garlic Sauces\n📅 Only on 1st & 2nd September\n💰 Just 20 AED\n🔥 Don’t miss it!",
+  "min_order_aed": "20",
+  "title_ar": "🐔 عرض يوم الدجاج",
+  "description_ar": "🍗 8 قطع دجاج مقرمش + 2 صلصة ثوم\n📅 فقط يوم 1 و 2 سبتمبر\n💰 فقط 20 درهم\n🔥 لا تفوّت العرض!"
+}
+
     "facebook": "https://www.facebook.com/crispychickenae/",
     "instagram": "https://www.instagram.com/crispychickenae/?hl=en",
     "tiktok": "https://www.tiktok.com/channel/Crispy-chicken?lang=en",

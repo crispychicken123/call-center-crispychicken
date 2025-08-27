@@ -115,4 +115,20 @@ document.getElementById('langEn').addEventListener('click', ()=>{ state.lang='en
 document.getElementById('filterStatus').addEventListener('change', render);
 document.getElementById('search').addEventListener('input', render);
 
-load();
+async function load(){
+  try {
+    const res = await fetch('offers.json?_=' + Date.now()); // صحح المسار
+    if (!res.ok) throw new Error("Failed to fetch offers.json");
+    const json = await res.json();
+
+    // يقبل الشكلين: {offers:[..]} أو [..]
+    state.offers = Array.isArray(json) ? json : (json.offers || []);
+
+    render();
+  } catch (err) {
+    console.error("Error loading offers:", err);
+    document.getElementById('offersGrid').innerHTML =
+      "<p class='text-red-600'>⚠️ خطأ في تحميل العروض</p>";
+  }
+}
+

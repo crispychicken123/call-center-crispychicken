@@ -1,0 +1,7 @@
+static:
+  - src: public
+    dest: /
+  - src: assets
+    dest: /assets
+  - src: images
+    dest: /images

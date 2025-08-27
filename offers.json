@@ -1,57 +1,54 @@
-{
-  "pwd": "Crispy@123",
-  "offers": [
-    {
-      "id": 1,
-      "title_ar": "كريسبي تشيكن – توصيل سريع لحد بابك!",
-      "title_en": "Crispy Chicken Delivery",
-      "description_ar": "🍗 استمتع بألذ وجبة دجاج مقرمش! اطلب الآن من خلال الرقم الموحد: 📞 600527488 ✅ خدمة التوصيل متاحة يوميًا.",
-      "description_en": "Order your favorite meals now – Hot, Fresh & Fast! 📞 Call us: 600 527 488 ✅ Delivery available daily.",
-      "discount_percent": 0,
-      "min_order_aed": 0,
-      "menu_url": "https://crispychicken-uae.com",
-      "validity": {
-        "start_date": "2025-08-01",
-        "end_date": "2025-12-31"
-      },
-      "contacts": {
-        "hotline": "600527488",
-        "mobile_display": "",
-        "whatsapp": "+971600527488",
-        "email": "offers@crispychicken.ae"
-      },
-      "social": {
-        "facebook": "https://facebook.com/crispychicken",
-        "instagram": "https://instagram.com/crispychicken",
-        "tiktok": "https://tiktok.com/@crispychicken",
-        "x": "https://x.com/crispychicken"
-      }
+[
+  {
+    "id": 1,
+    "title_ar": "كريسبي تشيكن – توصيل سريع لحد بابك!",
+    "title_en": "Crispy Chicken Delivery",
+    "description_ar": "🍗 استمتع بألذ وجبة دجاج مقرمش! اطلب الآن من خلال الرقم الموحد: 📞 600527488 ✅ خدمة التوصيل متاحة يوميًا.",
+    "description_en": "Order your favorite meals now – Hot, Fresh & Fast! 📞 Call us: 600 527 488 ✅ Delivery available daily.",
+    "discount_percent": 0,
+    "min_order_aed": 0,
+    "menu_url": "https://crispychicken-uae.com",
+    "validity": {
+      "start_date": "2025-08-01",
+      "end_date": "2025-12-31"
     },
-    {
-      "id": 2,
-      "title_ar": "عرض يوم الدجاج",
-      "title_en": "Chicken Day Offer",
-      "description_ar": "🍗 8 قطع دجاج + 2 صوص ثوم – فقط 20 درهم! 📅 الأيام: الإثنين والثلاثاء (1 و 2 سبتمبر) 📍 متاح على تطبيق كريم – توصيل، سفري، وطلبات داخل المطعم.",
-      "description_en": "🍗 8 pcs Chicken + 2 Garlic Sauces – Only AED 20! 📅 Days: Monday & Tuesday (1 & 2 Sep) 📍 Available on Careem App – Delivery, Takeaway & Dine-in.",
-      "discount_percent": 0,
-      "min_order_aed": 20,
-      "menu_url": "https://crispychicken-uae.com",
-      "validity": {
-        "start_date": "2025-09-01",
-        "end_date": "2025-09-02"
-      },
-      "contacts": {
-        "hotline": "600527488",
-        "mobile_display": "",
-        "whatsapp": "+971600527488",
-        "email": "offers@crispychicken.ae"
-      },
-      "social": {
-        "facebook": "https://facebook.com/crispychicken",
-        "instagram": "https://instagram.com/crispychicken",
-        "tiktok": "https://tiktok.com/@crispychicken",
-        "x": "https://x.com/crispychicken"
-      }
+    "contacts": {
+      "hotline": "600527488",
+      "mobile_display": "",
+      "whatsapp": "+971600527488",
+      "email": "offers@crispychicken.ae"
+    },
+    "social": {
+      "facebook": "https://facebook.com/crispychicken",
+      "instagram": "https://instagram.com/crispychicken",
+      "tiktok": "https://tiktok.com/@crispychicken",
+      "x": "https://x.com/crispychicken"
     }
-  ]
-}
+  },
+  {
+    "id": 2,
+    "title_ar": "عرض يوم الدجاج",
+    "title_en": "Chicken Day Offer",
+    "description_ar": "🍗 8 قطع دجاج + 2 صوص ثوم – فقط 20 درهم! 📅 الأيام: الإثنين والثلاثاء (1 و 2 سبتمبر) 📍 متاح على تطبيق كريم – توصيل، سفري، وطلبات داخل المطعم.",
+    "description_en": "🍗 8 pcs Chicken + 2 Garlic Sauces – Only AED 20! 📅 Days: Monday & Tuesday (1 & 2 Sep) 📍 Available on Careem App – Delivery, Takeaway & Dine-in.",
+    "discount_percent": 0,
+    "min_order_aed": 20,
+    "menu_url": "https://crispychicken-uae.com",
+    "validity": {
+      "start_date": "2025-09-01",
+      "end_date": "2025-09-02"
+    },
+    "contacts": {
+      "hotline": "600527488",
+      "mobile_display": "",
+      "whatsapp": "+971600527488",
+      "email": "offers@crispychicken.ae"
+    },
+    "social": {
+      "facebook": "https://facebook.com/crispychicken",
+      "instagram": "https://instagram.com/crispychicken",
+      "tiktok": "https://tiktok.com/@crispychicken",
+      "x": "https://x.com/crispychicken"
+    }
+  }
+]

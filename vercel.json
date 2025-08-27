@@ -1,7 +1,8 @@
 {
-  "rewrites": [
-    { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/thank-you", "destination": "/thank-you.html" },
-    { "source": "/favicon.ico", "destination": "/favicon.png" }
+  "version": 2,
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/admin", "dest": "/admin.html" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

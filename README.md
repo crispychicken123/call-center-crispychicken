@@ -34,4 +34,3 @@
   "description_ar": "🍗 8 قطع دجاج مقرمش + 2 صلصة ثوم\n📅 فقط يوم 1 و 2 سبتمبر\n💰 فقط 20 درهم\n🔥 لا تفوّت العرض!",
   "min_order_aed": "20"
 }
-https://twitter.com/search?q=%23crispychicken&src=hashtag_click

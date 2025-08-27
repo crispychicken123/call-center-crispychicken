@@ -1,182 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Admin – Crispy Chicken</title>
-  <link rel="icon" href="/public/assets/favicon.png" type="image/png" />
-  <style>
-    body{font-family:Arial,system-ui,sans-serif;margin:0;background:#0f0f0f;color:#fafafa}
-    header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#222}
-    .wrap{max-width:1000px;margin:20px auto;padding:0 16px}
-    .card{background:#181818;border:1px solid #2a2a2a;border-radius:14px;padding:16px;margin-bottom:16px}
-    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#eee}
-    label{font-size:.9rem;opacity:.9}
-    .grid{display:grid;gap:12px;grid-template-columns:1fr 1fr}
-    .grid-1{display:grid;gap:12px;grid-template-columns:1fr}
-    button{padding:10px 14px;border-radius:10px;border:none;cursor:pointer}
-    .primary{background:#f1b24a;color:#111;font-weight:700}
-    .danger{background:#b30000;color:#fff}
-    .row{display:flex;gap:10px;flex-wrap:wrap}
-    .muted{opacity:.75}
-    .hidden{display:none}
-    #lock{position:fixed;inset:0;background:#000d;display:flex;align-items:center;justify-content:center}
-    #lock .modal{background:#222;padding:24px;border-radius:14px;border:1px solid #333;max-width:360px;width:92%}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin – Crispy Chicken Offers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="assets/logo.svg" />
 </head>
-<body>
-  <div id="lock">
-    <div class="modal">
-      <h2>Admin Login</h2>
-      <p class="muted">Enter password to access.</p>
-      <input type="password" id="pwd" placeholder="Password" />
-      <button class="primary" onclick="unlock()">Unlock</button>
-      <p id="err" class="muted hidden">Wrong password.</p>
-    </div>
-  </div>
-
-  <header>
-    <strong>Admin Panel – Crispy Chicken</strong>
-    <div class="row">
-      <a class="muted" href="/">← Back to site</a>
-      <button class="danger" onclick="lock()">Lock</button>
+<body class="bg-zinc-50 text-zinc-900">
+  <header class="sticky top-0 z-10 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.svg" class="w-8 h-8" alt="Logo">
+        <h1 class="text-xl font-semibold">Admin – Offers Manager</h1>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="index.html" class="px-3 py-1 rounded-xl border">View Site</a>
+      </div>
     </div>
   </header>
 
-  <div class="wrap">
-    <div class="card">
-      <h3>Offer Content</h3>
-      <div class="grid">
-        <div>
-          <label>Title (Arabic)</label>
-          <input id="title_ar"/>
+  <main class="max-w-6xl mx-auto p-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <section class="lg:col-span-2">
+        <div class="bg-white rounded-2xl shadow p-4">
+          <h2 class="text-lg font-semibold mb-3">Offer Content</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <input id="title_ar" class="border rounded-xl px-3 py-2" placeholder="Title (Arabic)" />
+            <input id="title_en" class="border rounded-xl px-3 py-2" placeholder="Title (English)" />
+            <textarea id="description_ar" class="border rounded-xl px-3 py-2 md:col-span-2" placeholder="Description (Arabic)"></textarea>
+            <textarea id="description_en" class="border rounded-xl px-3 py-2 md:col-span-2" placeholder="Description (English)"></textarea>
+            <input id="discount_percent" type="number" class="border rounded-xl px-3 py-2" placeholder="Discount % (0-100)" />
+            <input id="min_order_aed" type="number" class="border rounded-xl px-3 py-2" placeholder="Min order (AED)" />
+            <input id="menu_url" class="border rounded-xl px-3 py-2 md:col-span-2" placeholder="Menu URL (https://)" />
+            <div class="grid grid-cols-2 gap-3 md:col-span-2">
+              <input id="start_date" type="date" class="border rounded-xl px-3 py-2" />
+              <input id="end_date" type="date" class="border rounded-xl px-3 py-2" />
+            </div>
+          </div>
+
+          <h3 class="text-md font-semibold mt-4 mb-2">Contacts</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <input id="hotline" class="border rounded-xl px-3 py-2" placeholder="Hotline" />
+            <input id="mobile_display" class="border rounded-xl px-3 py-2" placeholder="Mobile (display)" />
+            <input id="whatsapp" class="border rounded-xl px-3 py-2" placeholder="WhatsApp (E.164 e.g. +971501882206)" />
+            <input id="email" class="border rounded-xl px-3 py-2" placeholder="Email (receives messages)" />
+          </div>
+
+          <h3 class="text-md font-semibold mt-4 mb-2">Social Links</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <input id="facebook" class="border rounded-xl px-3 py-2" placeholder="Facebook" />
+            <input id="instagram" class="border rounded-xl px-3 py-2" placeholder="Instagram" />
+            <input id="tiktok" class="border rounded-xl px-3 py-2" placeholder="TikTok" />
+            <input id="x" class="border rounded-xl px-3 py-2" placeholder="X (Twitter)" />
+          </div>
+
+          <div class="mt-4 flex gap-2 flex-wrap">
+            <button id="btnAdd" class="px-4 py-2 rounded-2xl bg-black text-white">Add / Update Offer</button>
+            <button id="btnDownload" class="px-4 py-2 rounded-2xl border">Download offers.json</button>
+            <button id="btnCopyCurl" class="px-4 py-2 rounded-2xl border">Copy cURL</button>
+          </div>
         </div>
-        <div>
-          <label>Title (English)</label>
-          <input id="title_en"/>
+
+        <div class="bg-white rounded-2xl shadow p-4 mt-6">
+          <h2 class="text-lg font-semibold mb-3">Current Offers</h2>
+          <div id="offersList" class="space-y-3"></div>
         </div>
-        <div>
-          <label>Description (Arabic)</label>
-          <textarea id="description_ar" rows="3"></textarea>
+      </section>
+
+      <aside class="lg:col-span-1">
+        <div class="bg-white rounded-2xl shadow p-4">
+          <h3 class="text-md font-semibold mb-2">Upload to GitHub</h3>
+          <div class="space-y-2">
+            <input id="gh_token" class="border rounded-xl px-3 py-2 w-full" placeholder="GitHub Token" />
+            <input id="gh_user" class="border rounded-xl px-3 py-2 w-full" placeholder="GitHub Username/Org" />
+            <input id="gh_repo" class="border rounded-xl px-3 py-2 w-full" placeholder="Repository (e.g., crispychicken-offers)" />
+            <input id="gh_path" class="border rounded-xl px-3 py-2 w-full" placeholder="Path (default: data/offers.json)" value="data/offers.json" />
+            <input id="admin_pwd" class="border rounded-xl px-3 py-2 w-full" placeholder="Admin Password (pwd in JSON)" />
+            <button id="btnUpload" class="w-full px-4 py-2 rounded-2xl bg-black text-white mt-2">Upload offers.json</button>
+            <p class="text-xs text-zinc-500">Token is used client-side only and never stored by this page.</p>
+            <div id="uploadStatus" class="text-sm mt-2"></div>
+          </div>
         </div>
-        <div>
-          <label>Description (English)</label>
-          <textarea id="description_en" rows="3"></textarea>
-        </div>
-        <div>
-          <label>Discount %</label>
-          <input id="discount_percent" type="number" min="0" max="100"/>
-        </div>
-        <div>
-          <label>Min order (AED)</label>
-          <input id="min_order_aed" type="number" min="0"/>
-        </div>
-      </div>
+      </aside>
     </div>
+  </main>
 
-    <div class="card">
-      <h3>Contacts</h3>
-      <div class="grid">
-        <div><label>Hotline</label><input id="hotline"/></div>
-        <div><label>Mobile (display)</label><input id="mobile"/></div>
-        <div><label>WhatsApp (E.164 e.g. +971501882206)</label><input id="whatsapp_e164"/></div>
-        <div><label>Email (receives messages)</label><input id="email"/></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Social Links</h3>
-      <div class="grid">
-        <div><label>Facebook</label><input id="facebook"/></div>
-        <div><label>Instagram</label><input id="instagram"/></div>
-        <div><label>TikTok</label><input id="tiktok"/></div>
-        <div><label>X (Twitter)</label><input id="x"/></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Actions</h3>
-      <div class="row">
-        <button class="primary" onclick="downloadJSON()">Download offers.json</button>
-        <button onclick="copyCurl()">Copy cURL (for API upload)</button>
-      </div>
-      <p class="muted">Upload <code>offers.json</code> to <code>/data/offers.json</code> in your GitHub repo, then Deploy on Vercel.</p>
-    </div>
-
-    <div class="card">
-      <h3>Preview</h3>
-      <div class="grid-1">
-        <div id="preview" class="muted">Live preview will update as you type…</div>
-      </div>
-    </div>
-  </div>
-
-<script>
-  const PASSWORD = "Crispy@123";
-  const $ = (s)=>document.querySelector(s);
-  let state = {};
-
-  function lock(){ $('#lock').style.display='flex'; }
-  function unlock(){
-    const ok = $('#pwd').value === PASSWORD;
-    $('#err').classList.toggle('hidden', ok);
-    if(ok){ $('#lock').style.display='none'; }
-  }
-
-  async function load(){
-    try{
-      const res = await fetch('/data/offers.json', {cache:'no-store'});
-      state = await res.json();
-    }catch(e){
-      state = {};
-    }
-    ['title_ar','title_en','description_ar','description_en','discount_percent','min_order_aed','hotline','mobile','whatsapp_e164','email'].forEach(id=>{
-      if(state[id]!==undefined) $('#'+id).value = state[id];
-    });
-    if(state.social){
-      ['facebook','instagram','tiktok','x'].forEach(k=>$('#'+k).value = state.social[k]||'');
-    }
-    bind();
-    render();
-  }
-
-  function bind(){
-    document.querySelectorAll('input,textarea').forEach(el=>{
-      el.addEventListener('input', ()=>{
-        const id = el.id;
-        if(['facebook','instagram','tiktok','x'].includes(id)){
-          state.social = state.social||{}; state.social[id]=el.value;
-        } else {
-          state[id]=el.value;
-        }
-        render();
-      });
-    });
-  }
-
-  function render(){
-    $('#preview').innerText = JSON.stringify(state, null, 2);
-  }
-
-  function downloadJSON(){
-    const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'offers.json';
-    a.click();
-  }
-
-  function copyCurl(){
-    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(state))));
-    const curl = `curl -X PUT -H "Authorization: token YOUR_GITHUB_TOKEN" -H "Content-Type: application/json" \
-"https://api.github.com/repos/OWNER/REPO/contents/data/offers.json" \
--d "{ \\"message\\": \\"update offers\\", \\"content\\": \\"${encoded}\\" }"`;
-    navigator.clipboard.writeText(curl);
-    alert('cURL copied. Replace OWNER/REPO and YOUR_GITHUB_TOKEN before running.');
-  }
-
-  load();
-  lock(); // show lock by default
-</script>
+  <script src="scripts/admin.js"></script>
 </body>
 </html>

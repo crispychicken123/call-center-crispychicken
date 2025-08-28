@@ -1,91 +1,381 @@
 <!doctype html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin – Crispy Chicken Offers</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="assets/logo.svg" />
-</head>
-<body class="bg-zinc-50 text-zinc-900">
-  <header class="sticky top-0 z-10 bg-white/80 backdrop-blur border-b">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <img src="assets/logo.svg" class="w-8 h-8" alt="Logo">
-        <h1 class="text-xl font-semibold">Admin – Offers Manager</h1>
-      </div>
-      <div class="flex items-center gap-2">
-        <a href="index.html" class="px-3 py-1 rounded-xl border">View Site</a>
-      </div>
-    </div>
-  </header>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CRISPY CHICKEN – UAE Offers</title>
+    <!-- Tailwind Play CDN (dev) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <main class="max-w-6xl mx-auto p-4">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <section class="lg:col-span-2">
-        <div class="bg-white rounded-2xl shadow p-4">
-          <h2 class="text-lg font-semibold mb-3">Offer Content</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <input id="title_ar" class="border rounded-xl px-3 py-2" placeholder="Title (Arabic)" />
-            <input id="title_en" class="border rounded-xl px-3 py-2" placeholder="Title (English)" />
-            <textarea id="description_ar" class="border rounded-xl px-3 py-2 md:col-span-2" placeholder="Description (Arabic)"></textarea>
-            <textarea id="description_en" class="border rounded-xl px-3 py-2 md:col-span-2" placeholder="Description (English)"></textarea>
-            <input id="discount_percent" type="number" class="border rounded-xl px-3 py-2" placeholder="Discount % (0-100)" />
-            <input id="min_order_aed" type="number" class="border rounded-xl px-3 py-2" placeholder="Min order (AED)" />
-            <input id="menu_url" class="border rounded-xl px-3 py-2 md:col-span-2" placeholder="Menu URL (https://)" />
-            <div class="grid grid-cols-2 gap-3 md:col-span-2">
-              <input id="start_date" type="date" class="border rounded-xl px-3 py-2" />
-              <input id="end_date" type="date" class="border rounded-xl px-3 py-2" />
+    <meta name="theme-color" content="#ffcb05" />
+    <link rel="icon" href="assets/logo.svg" />
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-brand: #d93900;
+        --color-accent: #ffcb05;
+        --radius-2xl: 1.25rem;
+      }
+      .card {@apply rounded-2xl shadow border bg-white;}
+      .btn {@apply px-4 py-2 rounded-2xl border font-medium transition;}
+      .btn-primary {@apply bg-black text-white hover:opacity-90;}
+      .btn-ghost {@apply border hover:bg-zinc-50;}
+      .chip {@apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs border;}
+    </style>
+  </head>
+  <body class="bg-yellow-50/30 text-zinc-900 selection:bg-brand/10">
+    <!-- Top bar -->
+    <header class="sticky top-0 z-20 bg-white/80 backdrop-blur border-b">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img id="appLogo" src="assets/logo.svg" class="w-10 h-10 rounded-full" alt="Crispy Chicken" />
+          <div>
+            <h1 class="text-lg md:text-xl font-semibold text-brand">CRISPY CHICKEN – UAE</h1>
+            <p id="subtitle" class="text-xs text-zinc-500">عروض وخصومات مميزة</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btnAr" class="btn" onclick="setLang('ar')">عربي</button>
+          <button id="btnEn" class="btn" onclick="setLang('en')">EN</button>
+          <button id="btnAdminToggle" class="btn-ghost btn" onclick="toggleAdmin()">
+            <span class="hidden sm:inline">Admin</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 sm:ml-1"><path fill-rule="evenodd" d="M12 2.25a.75.75 0 01.75.75v2.878a7.5 7.5 0 014.872 12.703l2.036 2.036a.75.75 0 11-1.06 1.061l-2.036-2.036A7.5 7.5 0 1112 5.878V3a.75.75 0 01.75-.75zM6.75 12a5.25 5.25 0 109.16 3.72l-1.772-1.772a3 3 0 11-1.06-1.06l1.772 1.772A5.25 5.25 0 006.75 12z" clip-rule="evenodd"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Announcement & Contact -->
+    <main class="max-w-6xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <section class="lg:col-span-2 space-y-6">
+        <!-- Announcement card -->
+        <div class="card p-5 border-brand/20">
+          <div class="flex items-start gap-3">
+            <div class="mt-1 w-10 h-10 rounded-full bg-accent/30 flex items-center justify-center">🔥</div>
+            <div class="flex-1">
+              <h2 id="announceTitle" class="text-lg font-semibold text-brand mb-1">إعلان</h2>
+              <p id="announceText" class="text-sm md:text-base leading-relaxed">
+                ✨ كرسبي تشيكن قريبًا في مكان جديد! 🍗🔥 تتوقعون وين بيكون الفرع الجديد؟ شاركونا توقعاتكم بالكومنت 👇
+              </p>
+              <div class="mt-3 flex flex-wrap items-center gap-2">
+                <span class="chip border-brand/30 text-brand">#NewBranch</span>
+                <span class="chip">UAE</span>
+                <span id="nowStamp" class="text-xs text-zinc-500"></span>
+              </div>
             </div>
-          </div>
-
-          <h3 class="text-md font-semibold mt-4 mb-2">Contacts</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <input id="hotline" class="border rounded-xl px-3 py-2" placeholder="Hotline" />
-            <input id="mobile_display" class="border rounded-xl px-3 py-2" placeholder="Mobile (display)" />
-            <input id="whatsapp" class="border rounded-xl px-3 py-2" placeholder="WhatsApp (E.164 e.g. +971501882206)" />
-            <input id="email" class="border rounded-xl px-3 py-2" placeholder="Email (receives messages)" />
-          </div>
-
-          <h3 class="text-md font-semibold mt-4 mb-2">Social Links</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <input id="facebook" class="border rounded-xl px-3 py-2" placeholder="Facebook" />
-            <input id="instagram" class="border rounded-xl px-3 py-2" placeholder="Instagram" />
-            <input id="tiktok" class="border rounded-xl px-3 py-2" placeholder="TikTok" />
-            <input id="x" class="border rounded-xl px-3 py-2" placeholder="X (Twitter)" />
-          </div>
-
-          <div class="mt-4 flex gap-2 flex-wrap">
-            <button id="btnAdd" class="px-4 py-2 rounded-2xl bg-black text-white">Add / Update Offer</button>
-            <button id="btnDownload" class="px-4 py-2 rounded-2xl border">Download offers.json</button>
-            <button id="btnCopyCurl" class="px-4 py-2 rounded-2xl border">Copy cURL</button>
           </div>
         </div>
 
-        <div class="bg-white rounded-2xl shadow p-4 mt-6">
-          <h2 class="text-lg font-semibold mb-3">Current Offers</h2>
-          <div id="offersList" class="space-y-3"></div>
+        <!-- Offers list -->
+        <div class="card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h2 id="offersHeading" class="text-lg font-semibold">العروض الحالية</h2>
+            <div class="text-xs text-zinc-500" id="offersCount"></div>
+          </div>
+          <div id="offersList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+          <div id="noOffers" class="hidden text-sm text-zinc-500 py-4 text-center">لا توجد عروض حالياً</div>
+        </div>
+
+        <!-- Contact form (mailto) -->
+        <div class="card p-5">
+          <h2 id="contactHeading" class="text-lg font-semibold mb-3">تواصل معنا</h2>
+          <form id="contactForm" action="mailto:KENAWE@CRISPYCHICKEN.REST" method="POST" enctype="text/plain" class="grid grid-cols-1 gap-3">
+            <input dir="auto" class="border rounded-xl px-3 py-2" name="name" placeholder="الاسم / Name" required />
+            <textarea dir="auto" class="border rounded-xl px-3 py-2" name="message" rows="4" placeholder="اكتب رسالتك... / Write your message..." required></textarea>
+            <div class="flex gap-2 flex-wrap">
+              <button class="btn-primary btn" type="submit">إرسال / Send</button>
+              <a id="whLink" href="#" target="_blank" class="btn-ghost btn">WhatsApp</a>
+            </div>
+            <p class="text-xs text-zinc-500">* يتم فتح تطبيق البريد الافتراضي لديك لإرسال الرسالة.</p>
+          </form>
         </div>
       </section>
 
-      <aside class="lg:col-span-1">
-        <div class="bg-white rounded-2xl shadow p-4">
-          <h3 class="text-md font-semibold mb-2">Upload to GitHub</h3>
-          <div class="space-y-2">
-            <input id="gh_token" class="border rounded-xl px-3 py-2 w-full" placeholder="GitHub Token" />
-            <input id="gh_user" class="border rounded-xl px-3 py-2 w-full" placeholder="GitHub Username/Org" />
-            <input id="gh_repo" class="border rounded-xl px-3 py-2 w-full" placeholder="Repository (e.g., crispychicken-offers)" />
-            <input id="gh_path" class="border rounded-xl px-3 py-2 w-full" placeholder="Path (default: data/offers.json)" value="data/offers.json" />
-            <input id="admin_pwd" class="border rounded-xl px-3 py-2 w-full" placeholder="Admin Password (pwd in JSON)" />
-            <button id="btnUpload" class="w-full px-4 py-2 rounded-2xl bg-black text-white mt-2">Upload offers.json</button>
-            <p class="text-xs text-zinc-500">Token is used client-side only and never stored by this page.</p>
-            <div id="uploadStatus" class="text-sm mt-2"></div>
+      <!-- Admin panel -->
+      <aside id="adminPanel" class="lg:col-span-1 card p-5 hidden">
+        <h3 class="text-md font-semibold mb-2" id="adminTitle">لوحة الإدارة</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="text-sm">نص الإعلان / Announcement</label>
+            <textarea id="announceEditor" class="border rounded-xl px-3 py-2 w-full mt-1" rows="3"></textarea>
+            <div class="mt-2 flex gap-2">
+              <button class="btn-primary btn" onclick="applyAnnouncement()">تحديث</button>
+              <button class="btn btn-ghost" onclick="toggleAnnouncement()">إظهار/إخفاء</button>
+            </div>
+          </div>
+
+          <div class="border-t pt-4">
+            <h4 class="font-semibold mb-2">إضافة/تعديل عرض</h4>
+            <div class="grid grid-cols-1 gap-2">
+              <input id="title_ar" class="border rounded-xl px-3 py-2" placeholder="العنوان (عربي)" />
+              <input id="title_en" class="border rounded-xl px-3 py-2" placeholder="Title (English)" />
+              <textarea id="description_ar" class="border rounded-xl px-3 py-2" placeholder="الوصف (عربي)"></textarea>
+              <textarea id="description_en" class="border rounded-xl px-3 py-2" placeholder="Description (English)"></textarea>
+              <div class="grid grid-cols-2 gap-2">
+                <input id="discount_percent" type="number" class="border rounded-xl px-3 py-2" placeholder="خصم %" />
+                <input id="min_order_aed" type="number" class="border rounded-xl px-3 py-2" placeholder="حد أدنى (AED)" />
+              </div>
+              <input id="menu_url" class="border rounded-xl px-3 py-2" placeholder="Menu URL (https://)" />
+              <div class="grid grid-cols-2 gap-2">
+                <input id="start_date" type="date" class="border rounded-xl px-3 py-2" />
+                <input id="end_date" type="date" class="border rounded-xl px-3 py-2" />
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <input id="hotline" class="border rounded-xl px-3 py-2" placeholder="Hotline" />
+                <input id="whatsapp" class="border rounded-xl px-3 py-2" placeholder="WhatsApp (+971...)" />
+              </div>
+              <input id="email" class="border rounded-xl px-3 py-2" placeholder="Email" />
+              <div class="flex gap-2 flex-wrap mt-1">
+                <button id="btnAdd" class="btn-primary btn" type="button" onclick="addOrUpdateOffer()">Add / Update Offer</button>
+                <button id="btnDownload" class="btn btn-ghost" type="button" onclick="downloadJSON()">Download offers.json</button>
+                <button id="btnCopyCurl" class="btn btn-ghost" type="button" onclick="copyCurl()">Copy cURL</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t pt-4">
+            <h4 class="font-semibold mb-2">Upload to GitHub</h4>
+            <div class="grid grid-cols-1 gap-2">
+              <input id="gh_token" class="border rounded-xl px-3 py-2" placeholder="GitHub Token (repo scope)" />
+              <input id="gh_user" class="border rounded-xl px-3 py-2" placeholder="Username/Org" />
+              <input id="gh_repo" class="border rounded-xl px-3 py-2" placeholder="Repository (e.g., crispychicken-offers)" />
+              <input id="gh_path" class="border rounded-xl px-3 py-2" value="data/offers.json" placeholder="Path in repo" />
+              <button id="btnUpload" class="btn-primary btn" type="button" onclick="uploadToGitHub()">Upload offers.json</button>
+              <div id="uploadStatus" class="text-xs text-zinc-500"></div>
+            </div>
           </div>
         </div>
       </aside>
-    </div>
-  </main>
+    </main>
 
-  <script src="scripts/admin.js"></script>
-</body>
+    <footer class="max-w-6xl mx-auto px-4 py-8 text-center text-xs text-zinc-500">
+      © <span id="year"></span> CRISPY CHICKEN UAE – All rights reserved.
+    </footer>
+
+    <script>
+      // ---------- i18n & dir ----------
+      const i18n = {
+        ar: {
+          subtitle: 'عروض وخصومات مميزة',
+          announceTitle: 'إعلان',
+          offersHeading: 'العروض الحالية',
+          contactHeading: 'تواصل معنا',
+          noOffers: 'لا توجد عروض حالياً',
+        },
+        en: {
+          subtitle: 'Special offers & deals',
+          announceTitle: 'Announcement',
+          offersHeading: 'Current Offers',
+          contactHeading: 'Contact Us',
+          noOffers: 'No offers at the moment',
+        }
+      };
+
+      function setLang(lang) {
+        localStorage.setItem('lang', lang);
+        const html = document.documentElement;
+        html.lang = lang;
+        html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.getElementById('btnAr').classList.toggle('bg-zinc-900', lang==='ar');
+        document.getElementById('btnAr').classList.toggle('text-white', lang==='ar');
+        document.getElementById('btnEn').classList.toggle('bg-zinc-900', lang==='en');
+        document.getElementById('btnEn').classList.toggle('text-white', lang==='en');
+        const t = i18n[lang];
+        document.getElementById('subtitle').textContent = t.subtitle;
+        document.getElementById('announceTitle').textContent = t.announceTitle;
+        document.getElementById('offersHeading').textContent = t.offersHeading;
+        document.getElementById('contactHeading').textContent = t.contactHeading;
+        document.getElementById('noOffers').textContent = t.noOffers;
+        renderOffers();
+      }
+
+      // ---------- Announcement ----------
+      function applyAnnouncement() {
+        const txt = document.getElementById('announceEditor').value.trim();
+        if (!txt) return;
+        document.getElementById('announceText').textContent = txt;
+      }
+      function toggleAnnouncement() {
+        const card = document.getElementById('announceText').closest('.card');
+        card.classList.toggle('hidden');
+      }
+
+      // ---------- Offers CRUD (localStorage) ----------
+      function getOffers() { return JSON.parse(localStorage.getItem('cc_offers')||'[]'); }
+      function saveOffers(list) { localStorage.setItem('cc_offers', JSON.stringify(list)); }
+
+      function addOrUpdateOffer() {
+        const offer = {
+          id: crypto.randomUUID(),
+          title_ar: document.getElementById('title_ar').value.trim(),
+          title_en: document.getElementById('title_en').value.trim(),
+          description_ar: document.getElementById('description_ar').value.trim(),
+          description_en: document.getElementById('description_en').value.trim(),
+          discount_percent: Number(document.getElementById('discount_percent').value||0),
+          min_order_aed: Number(document.getElementById('min_order_aed').value||0),
+          menu_url: document.getElementById('menu_url').value.trim(),
+          start_date: document.getElementById('start_date').value,
+          end_date: document.getElementById('end_date').value,
+          hotline: document.getElementById('hotline').value.trim(),
+          whatsapp: document.getElementById('whatsapp').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          created_at: new Date().toISOString()
+        };
+        const list = getOffers();
+        list.unshift(offer);
+        saveOffers(list);
+        renderOffers();
+        alert('Offer saved locally.');
+      }
+
+      function renderOffers() {
+        const lang = localStorage.getItem('lang') || 'ar';
+        const list = getOffers();
+        const wrap = document.getElementById('offersList');
+        const count = document.getElementById('offersCount');
+        wrap.innerHTML = '';
+        if (!list.length) {
+          document.getElementById('noOffers').classList.remove('hidden');
+          count.textContent = '';
+          return;
+        }
+        document.getElementById('noOffers').classList.add('hidden');
+        count.textContent = `${list.length} ${lang==='ar'?'عرض':'offer'}`;
+        list.forEach(o => {
+          const active = isActive(o.start_date, o.end_date);
+          const title = lang==='ar' ? (o.title_ar||o.title_en) : (o.title_en||o.title_ar);
+          const desc = lang==='ar' ? (o.description_ar||o.description_en) : (o.description_en||o.description_ar);
+          const card = document.createElement('article');
+          card.className = 'border rounded-2xl p-4 flex flex-col gap-3';
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="font-semibold">${escapeHtml(title||'Untitled')}</h3>
+                <p class="text-sm text-zinc-600">${escapeHtml(desc||'')}</p>
+              </div>
+              <div class="text-right">
+                <div class="chip ${active?'border-emerald-400 text-emerald-600':'border-zinc-300 text-zinc-500'}">${active ? (lang==='ar'?'ساري':'Active') : (lang==='ar'?'منتهي':'Expired')}</div>
+                ${o.discount_percent?`<div class="mt-1 text-brand font-semibold">-${o.discount_percent}%</div>`:''}
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs text-zinc-600">
+              ${o.min_order_aed?`<span class="chip">${lang==='ar'?'حد أدنى':'Min'} AED ${o.min_order_aed}</span>`:''}
+              ${o.start_date||o.end_date?`<span class="chip">${formatRange(o.start_date,o.end_date, lang)}</span>`:''}
+              ${o.menu_url?`<a class="chip hover:underline" href="${o.menu_url}" target="_blank">Menu</a>`:''}
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${o.hotline?`<a class="btn btn-ghost" href="tel:${o.hotline}">☎ ${o.hotline}</a>`:''}
+              ${o.whatsapp?`<a class="btn btn-ghost" href="https://wa.me/${o.whatsapp.replace(/[^+\d]/g,'')}" target="_blank">WhatsApp</a>`:''}
+              ${o.email?`<a class="btn btn-ghost" href="mailto:${o.email}">Email</a>`:''}
+            </div>`;
+          wrap.appendChild(card);
+        });
+      }
+
+      function isActive(start,end){
+        const now = new Date();
+        const s = start? new Date(start+'T00:00:00') : null;
+        const e = end? new Date(end+'T23:59:59') : null;
+        return (!s || now>=s) && (!e || now<=e);
+      }
+
+      // ---------- JSON export / cURL ----------
+      function downloadJSON(){
+        const list = getOffers();
+        const blob = new Blob([JSON.stringify({offers:list}, null, 2)], {type:'application/json'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'offers.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+
+      async function copyCurl(){
+        const list = getOffers();
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify({offers:list}, null, 2))));
+        const user = document.getElementById('gh_user').value||'YOUR_USER';
+        const repo = document.getElementById('gh_repo').value||'YOUR_REPO';
+        const path = document.getElementById('gh_path').value||'data/offers.json';
+        const token = document.getElementById('gh_token').value||'YOUR_TOKEN';
+        const body = JSON.stringify({message:'Update offers.json', content});
+        const cmd = `curl -X PUT \
+  -H "Authorization: Bearer ${token}" \
+  -H "Accept: application/vnd.github+json" \
+  https://api.github.com/repos/${user}/${repo}/contents/${path} \
+  -d '${body.replace(/'/g,"'\\''")}'`;
+        await navigator.clipboard.writeText(cmd);
+        alert('cURL copied to clipboard.');
+      }
+
+      // ---------- GitHub upload (create/update) ----------
+      async function uploadToGitHub(){
+        const status = document.getElementById('uploadStatus');
+        status.textContent = 'Uploading…';
+        try{
+          const list = getOffers();
+          const content = btoa(unescape(encodeURIComponent(JSON.stringify({offers:list}, null, 2))));
+          const user = document.getElementById('gh_user').value.trim();
+          const repo = document.getElementById('gh_repo').value.trim();
+          const path = document.getElementById('gh_path').value.trim() || 'data/offers.json';
+          const token = document.getElementById('gh_token').value.trim();
+          if(!user||!repo||!token){ status.textContent='Please fill user/repo/token.'; return; }
+
+          // get SHA if file exists
+          let sha = undefined;
+          const getRes = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${encodeURIComponent(path)}`);
+          if(getRes.ok){ const j = await getRes.json(); sha = j.sha; }
+
+          const putRes = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${encodeURIComponent(path)}`,{
+            method:'PUT',
+            headers:{
+              'Authorization': `Bearer ${token}`,
+              'Accept': 'application/vnd.github+json',
+              'Content-Type':'application/json'
+            },
+            body: JSON.stringify({message:'Update offers.json', content, sha})
+          });
+          if(!putRes.ok){
+            const e = await putRes.text();
+            throw new Error(e);
+          }
+          status.textContent = 'Uploaded successfully ✔';
+        }catch(err){
+          status.textContent = 'Upload failed: ' + err.message.slice(0,180);
+        }
+      }
+
+      // ---------- Utils ----------
+      function escapeHtml(s){return s?.replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]))}
+      function formatRange(s,e,lang){
+        try{
+          const fmt = new Intl.DateTimeFormat(lang==='ar'?'ar-AE':'en-GB', {dateStyle:'medium'});
+          if(s&&e){return `${fmt.format(new Date(s))} – ${fmt.format(new Date(e))}`}
+          if(s){return `${lang==='ar'?'منذ':'from'} ${fmt.format(new Date(s))}`}
+          if(e){return `${lang==='ar'?'حتى':'until'} ${fmt.format(new Date(e))}`}
+        }catch{ return `${s||''} ${e?'– '+e:''}` }
+        return '';
+      }
+
+      function toggleAdmin(){
+        document.getElementById('adminPanel').classList.toggle('hidden');
+      }
+
+      // ---------- Init ----------
+      (function init(){
+        const y = new Date().getFullYear();
+        document.getElementById('year').textContent = y;
+        document.getElementById('announceEditor').value = document.getElementById('announceText').textContent.trim();
+        const lang = localStorage.getItem('lang') || 'ar';
+        setLang(lang);
+        // timestamp
+        try{
+          const stamp = new Intl.DateTimeFormat(lang==='ar'?'ar-AE':'en-GB',{dateStyle:'full', timeStyle:'short'}).format(new Date());
+          document.getElementById('nowStamp').textContent = stamp;
+        }catch{}
+        // WhatsApp shortcut
+        document.getElementById('whLink').href = 'https://wa.me/971509021993';
+        renderOffers();
+      })();
+    </script>
+  </body>
 </html>
